@@ -1,6 +1,7 @@
 {
-  "name": "nuxt-app",
+  "name": "crudizer-core-client",
   "private": true,
+  "author": "SerhatPolat",
   "type": "module",
   "scripts": {
     "build": "nuxt build",
