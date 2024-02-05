@@ -14,7 +14,7 @@ export default {
         secondary: "#90d431",
       },
       boxShadow: {
-        neumorphism: "20px 20px 50px #bfbfbf, -20px -20px 50px #ffffff",
+        neumorphism: "5px 5px 15px #d9d9d9, -5px -5px 15px #ffffff",
       },
     },
   },
