@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen w-screen bg-slate-300">
+  <div class="min-h-screen w-screen bg-slate-200">
     <div class="max-w-screen-xl mx-auto px-6 py-12">
       <button
         v-if="!showAddForm"
@@ -72,6 +72,7 @@
           id="info"
           placeholder="Info (Optional)"
           rows="4"
+          maxlength="150"
           class="w-full p-2 mb-4 rounded-lg outline-none"
           v-model="infoInput"
         ></textarea>
@@ -123,7 +124,7 @@
           <div
             v-for="index in 4"
             :key="index"
-            class="h-[144px] bg-slate-400 rounded-lg animate-pulse"
+            class="h-[212px] sm:h-[144px] bg-slate-300 rounded-lg animate-pulse"
           ></div>
         </div>
       </div>
