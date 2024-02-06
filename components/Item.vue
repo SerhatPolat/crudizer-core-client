@@ -16,7 +16,14 @@
         {{ name ? name : "-" }}
       </p>
 
-      <p class="text-primary text-lg font-bold">
+      <p
+        class="text-primary text-lg font-bold truncate w-52"
+        :title="
+          price.amount && price.currency
+            ? price.amount.toLocaleString() + ' ' + price.currency
+            : '-'
+        "
+      >
         {{
           price.amount && price.currency
             ? price.amount.toLocaleString() + " " + price.currency
