@@ -6,7 +6,7 @@
         class="bg-primary text-white flex items-center mb-6 mx-auto p-2 rounded-lg border-2 border-transparent hover:border-secondary hover:text-secondary transition"
         @click="showAddForm = true"
       >
-        <Icon name="material-symbols:add" /> Add New Item
+        <Icon name="ph:plus-bold" class="mr-2" /> Add New Item
       </button>
 
       <!-- Item Adding Section -->
@@ -73,9 +73,13 @@
           placeholder="Info (Optional)"
           rows="4"
           maxlength="150"
-          class="w-full p-2 mb-4 rounded-lg outline-none"
+          class="w-full p-2 rounded-lg outline-none"
           v-model="infoInput"
         ></textarea>
+
+        <p class="mb-6 text-sm">
+          {{ 150 - infoInput.length + " characters remaining" }}
+        </p>
 
         <div class="flex gap-4">
           <button
@@ -103,18 +107,19 @@
       <div v-if="items && items.length > 0" class="grid lg:grid-cols-2 gap-6">
         <Item
           v-for="item in items"
-          :key="item._id"
-          :id="item._id ? item._id : '-'"
-          :name="item.name ? item.name : '-'"
-          :imgSource="
-            item.imgSource ? item.imgSource : '/image-placeholder.png'
-          "
+          :key="item._id ? item._id : null"
+          :id="item._id ? item._id : null"
+          :name="item.name ? item.name : null"
+          :imgSource="item.imgSource ? item.imgSource : null"
           :price="
             item.price && item.price?.amount && item.price?.currency
               ? item.price
-              : '-'
+              : {
+                  amount: null,
+                  currency: null,
+                }
           "
-          :info="item.info ? item.info : '-'"
+          :info="item.info ? item.info : null"
         />
       </div>
 
@@ -151,10 +156,6 @@ onMounted(async () => {
   isLoading.value = false;
 });
 
-const handleUploadedImg = (e) => {
-  uploadedImg.value = e.target.files[0];
-};
-
 watch(uploadedImg, () => {
   if (uploadedImg.value) {
     let reader = new FileReader();
@@ -166,6 +167,10 @@ watch(uploadedImg, () => {
     };
   }
 });
+
+const handleUploadedImg = (e) => {
+  uploadedImg.value = e.target.files[0];
+};
 
 const sendAddItemRequest = () => {
   createItem({
