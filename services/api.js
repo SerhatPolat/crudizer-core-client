@@ -26,6 +26,16 @@ export const getItems = async (page) => {
   }
 };
 
+export const getItem = async (id) => {
+  try {
+    const response = await api.get(`/items/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching items:", error);
+    throw error;
+  }
+};
+
 export const createItem = async (item) => {
   try {
     const response = await api.post("/items", item);

@@ -5,7 +5,8 @@ crudizer-core is a fullstack CRUD web app kickstarter which one is includes comm
 - E2E data listing (w/ pagination) (Mongo database => Node.js backend => Nuxt 3 & Axios API requests => UI)
 - Ready to use E2E base64 image dataflow
 - Create/Update/Delete transactions for items
-- Ready to use UI for essentials (w/ tailwind config based primary, secondary color usage)
+- Item detail page & related logics
+- Ready to use UI for essentials (w/ responsive styling and config based color usage)
 
 <br>
 <hr>

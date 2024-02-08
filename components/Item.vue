@@ -32,16 +32,23 @@
       </p>
     </div>
 
-    <div class="absolute right-4 top-4">
+    <div v-if="route.path === '/'" class="absolute right-4 top-4">
       <button
-        class="flex items-center justify-center bg-gray-600 hover:brightness-110 transition text-white text-2xl rounded h-10 w-10 mb-8"
+        class="flex items-center justify-center bg-gray-600 hover:brightness-110 transition text-white text-2xl rounded h-8 w-8 mb-2"
+        @click="goToItemDetail"
+      >
+        <Icon name="ph:arrow-bend-up-right-bold" />
+      </button>
+
+      <button
+        class="flex items-center justify-center bg-gray-600 hover:brightness-110 transition text-white text-2xl rounded h-8 w-8 mb-2"
         @click="toggleInfoPopup"
       >
         <Icon name="ph:info-bold" />
       </button>
 
       <button
-        class="flex items-center justify-center bg-red-500 hover:brightness-110 transition text-white text-2xl rounded h-10 w-10"
+        class="flex items-center justify-center bg-red-500 hover:brightness-110 transition text-white text-2xl rounded h-8 w-8"
         @click="sendDeleteItemRequest"
       >
         <Icon name="ph:trash-bold" />
@@ -116,7 +123,6 @@
 
 <script>
 import { deleteItem, updateItem } from "../services/api";
-import { ref } from "vue";
 
 export default {
   props: {
@@ -130,6 +136,8 @@ export default {
     info: String,
   },
   setup(props) {
+    const router = useRouter();
+    const route = useRoute();
     const showInfoPopup = ref(false);
     const isEditActive = ref(false);
     const infoInput = ref("");
@@ -170,6 +178,10 @@ export default {
       });
     };
 
+    const goToItemDetail = () => {
+      router.push({ path: `/item/${props.id}` });
+    };
+
     return {
       sendDeleteItemRequest,
       showInfoPopup,
@@ -177,6 +189,8 @@ export default {
       isEditActive,
       handleEdit,
       infoInput,
+      goToItemDetail,
+      route,
     };
   },
 };
